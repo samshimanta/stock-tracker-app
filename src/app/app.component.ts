@@ -1,10 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from './@services/api.service';
+import { debounceTime, distinctUntilChanged, of, Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'stock-tracker-app';
+  searchSubject = new Subject<string>();
+
+  suggestions!: any[];
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+  this.searchSubject.pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    switchMap(query => {
+      if (!query) return of({ bestMatches: [] });
+      return this.apiService.searchStock(query);
+    })
+  ).subscribe(res => {
+    console.log(res);
+    this.suggestions = res.bestMatches;
+  });
+  }
+
+
+
+  // search($event: any): void {
+  //   console.log('Search query:', $event.target.value);
+
+  //   this.apiService.searchStock($event.target.value).pipe(
+  //     debounceTime(300),
+  //     distinctUntilChanged(),
+  //          switchMap((query) => {
+  //         if (!query) return of([]); // Avoid API call for empty input
+  //         return this.stockService.searchStocks(query);
+  //       })
+  //   ).
+    
+  //   subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.suggestions = res.bestMatches;
+  //     }
+  //   )
+  // }
+
+  search($event: any): void {
+  const query = $event.target.value;
+  this.searchSubject.next(query);
+}
+  selectSuggestion(suggestion:any){
+    console.log('Selected suggestion:', suggestion);
+  }
 }
