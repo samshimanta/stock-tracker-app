@@ -6,7 +6,7 @@ import { StockQuote } from 'src/app/@interfaces/stock-qoute.interface';
   templateUrl: './stock-details.component.html',
   styleUrls: ['./stock-details.component.scss']
 })
-export class StockDetailsComponent implements OnInit , OnChanges {
+export class StockDetailsComponent implements  OnChanges {
 @Input() stockDetails:any;
 @Input() stockName!:string;
 
@@ -20,9 +20,5 @@ data: any;
     
   }
 
-  ngOnInit(): void {
-    console.log(this.stockDetails);
-    
-  }
 
 }

@@ -17,95 +17,10 @@ export class StockChartComponent implements OnInit , OnChanges {
 
  public chart!: Chart;
   ngOnInit() {
-    //  this.chart = new Chart("canvas", {
-    //   type: "bar",
-    //   data: {
-    //     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    //     datasets: [
-    //       {
-    //         label: "# of Votes",
-    //         data: [8, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
-    //         backgroundColor: [
-    //           "rgba(255, 99, 132, 0.2)",
-    //           "rgba(54, 162, 235, 0.2)",
-    //           "rgba(255, 206, 86, 0.2)",
-    //           "rgba(75, 192, 192, 0.2)",
-    //           "rgba(153, 102, 255, 0.2)",
-    //           "rgba(255, 159, 64, 0.2)",
-    //           "rgba(255, 99, 132, 0.2)",
-    //           "rgba(54, 162, 235, 0.2)",
-    //           "rgba(255, 206, 86, 0.2)",
-    //           "rgba(75, 192, 192, 0.2)",
-    //           "rgba(153, 102, 255, 0.2)",
-    //           "rgba(255, 159, 64, 0.2)"
-    //         ],
-    //         borderColor: [
-    //           "rgba(255, 99, 132, 1)",
-    //           "rgba(54, 162, 235, 1)",
-    //           "rgba(255, 206, 86, 1)",
-    //           "rgba(75, 192, 192, 1)",
-    //           "rgba(153, 102, 255, 1)",
-    //           "rgba(255, 159, 64, 1)",
-    //           "rgba(255, 99, 132, 1)",
-    //           "rgba(54, 162, 235, 1)",
-    //           "rgba(255, 206, 86, 1)",
-    //           "rgba(75, 192, 192, 1)",
-    //           "rgba(153, 102, 255, 1)",
-    //           "rgba(255, 159, 64, 1)"
-    //         ],
-    //         borderWidth: 1
-    //       },
-    //        {
-    //         label: "# of Votes",
-    //         data: [8, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
-    //         backgroundColor: [
-    //           "rgba(255, 99, 132, 0.2)",
-    //           "rgba(54, 162, 235, 0.2)",
-    //           "rgba(255, 206, 86, 0.2)",
-    //           "rgba(75, 192, 192, 0.2)",
-    //           "rgba(153, 102, 255, 0.2)",
-    //           "rgba(255, 159, 64, 0.2)",
-    //           "rgba(255, 99, 132, 0.2)",
-    //           "rgba(54, 162, 235, 0.2)",
-    //           "rgba(255, 206, 86, 0.2)",
-    //           "rgba(75, 192, 192, 0.2)",
-    //           "rgba(153, 102, 255, 0.2)",
-    //           "rgba(255, 159, 64, 0.2)"
-    //         ],
-    //         borderColor: [
-    //           "rgba(255, 99, 132, 1)",
-    //           "rgba(54, 162, 235, 1)",
-    //           "rgba(255, 206, 86, 1)",
-    //           "rgba(75, 192, 192, 1)",
-    //           "rgba(153, 102, 255, 1)",
-    //           "rgba(255, 159, 64, 1)",
-    //           "rgba(255, 99, 132, 1)",
-    //           "rgba(54, 162, 235, 1)",
-    //           "rgba(255, 206, 86, 1)",
-    //           "rgba(75, 192, 192, 1)",
-    //           "rgba(153, 102, 255, 1)",
-    //           "rgba(255, 159, 64, 1)"
-    //         ],
-    //         borderWidth: 1
-    //       }
-    //     ]
-    //   },
-    //   options: {
-    //     scales: {
-    //       // yAxes: [
-    //       //   {
-    //       //     ticks: {
-    //       //       beginAtZero: true
-    //       //     }
-    //       //   }
-    //       // ]
-    //     }
-    //   }
-    // });
+    
   }
 
    ngOnChanges(changes: SimpleChanges): void {
-    // this.mothlyData = changes['mothlyTimeSeries'].currentValue?.['Monthly Time Series'];
         this.mothlyData = changes['mothlyTimeSeries'].currentValue;
 
     const lastTenEntries = Object.entries(this.mothlyData)
@@ -116,40 +31,11 @@ export class StockChartComponent implements OnInit , OnChanges {
     return acc;
   }, {});
   this.makeChart(lastTenEntries);
-    console.log(this.mothlyData);
-    console.log(lastTenEntries);
-    
-    
-     console.log(changes['mothlyTimeSeries'].currentValue);
-    //    this.chart = new Chart("canvas", {
-    //   type: "bar",
-    //   data: {
-    //     labels: ["AIRBUS INDUSTRIE A330 A330"],
-    //     datasets: [
-    //       {
-    //         label: "H - Transponder...",
-    //         data: [517, 19, 3, 5],
-    //         borderWidth: 1,
-    //         backgroundColor: "#407ab3"
-    //       }
-    //     ],
-    //   },
-    //   options: {
-    //     plugins: {
-    //       legend: {
-    //         display: true,
-    //         position: 'right'
-    //       }
-    //     }
-    //   }
-    // });
+  
   }
 
   makeChart(apiData:any) {
-console.log(apiData);
 const labels = Object.keys(apiData);
-console.log(labels);
-
 const dataset=Object.values(apiData);
 const openArray: any[] = [];
 const highArray: any[] = [];
@@ -163,15 +49,8 @@ highArray.push(data['2. high'])
 lowArray.push(data['3. low'])
 closeArray.push(data['4. close'])
 volumeArray.push(data['5. volume'])
-
   });
-console.log(labels);
-console.log(openArray);
-console.log(highArray);
-console.log(lowArray);
-console.log(closeArray);
-console.log(volumeArray);
-// this.chart.destroy();
+
  if (this.chart) {
     this.chart.destroy();
   }

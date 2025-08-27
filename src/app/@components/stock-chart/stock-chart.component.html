@@ -1,8 +1,11 @@
-<!-- <p>stock-chart works!</p>
-<h1>{{metaData |json}} </h1> -->
+
+<div *ngIf="metaData">
+  <h2>Stock Data Overview</h2>
 <h3>{{metaData['1. Information']}}</h3>
 <h3>Time Zone: {{metaData['4. Time Zone']}} </h3>
 <h3>Last Refreshed: {{metaData['3. Last Refreshed']}} </h3>
 
-<!-- <h3> {{}} </h3> -->
     <canvas [id]="canvasId"></canvas>
+</div>
+
+
