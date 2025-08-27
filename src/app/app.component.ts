@@ -14,7 +14,12 @@ export class AppComponent implements OnInit {
   stockDetails: any;
   stockName: string = '';
 
+  mothlyMetaData: any;
   mothlyTimeSeries: any;
+  weeklyMetaData: any;
+  weeklyTimeSeries: any;
+  dailyMetaData: any;
+  dailyTimeSeries: any;
 
   suggestions!: any[];
 
@@ -76,6 +81,8 @@ export class AppComponent implements OnInit {
       complete: () => {
         console.log('Completed fetching stock details');
         this.getMonthlyTimeSeries(suggestion['1. symbol']);
+        this.getWeeklyTimeSeries(suggestion['1. symbol']);
+        this.getDailyTimeSeries(suggestion['1. symbol']);
        }
       })
     
@@ -85,12 +92,46 @@ export class AppComponent implements OnInit {
     this.apiService.getMonthlyTimeSeries(symbol).subscribe(
       { next: (res) => {
           console.log('Monthly Time Series:', res);
-          this.mothlyTimeSeries = res;
+          this.mothlyTimeSeries = res?.['Monthly Time Series'];
+          this.mothlyMetaData = res?.['Meta Data'];
+          console.log(this.mothlyMetaData);
         },
         error: (err) => {
           console.error('Error fetching monthly time series:', err);},
         complete: () => {
           console.log('Completed fetching monthly time series');
+         }
+        })
+  }
+
+  getWeeklyTimeSeries(symbol:string){
+    this.apiService.getWeeklyTimeSeries(symbol).subscribe(
+      { next: (res) => {
+          console.log('Weekly Time Series:', res);
+          this.weeklyTimeSeries = res?.['Weekly Time Series'];
+          this.weeklyMetaData = res?.['Meta Data'];
+          console.log(this.weeklyMetaData); 
+        },
+        error: (err) => {
+          console.error('Error fetching weekly time series:', err);},
+        complete: () => {
+          console.log('Completed fetching weekly time series');
+         }
+        })
+  }
+
+  getDailyTimeSeries(symbol:string){
+    this.apiService.getDailyTimeSeries(symbol).subscribe(
+      { next: (res) => {
+          console.log('Daily Time Series:', res);
+          this.dailyTimeSeries = res?.['Time Series (Daily)'];
+          this.dailyMetaData = res?.['Meta Data'];
+          console.log(this.dailyMetaData);
+        },
+        error: (err) => {
+          console.error('Error fetching daily time series:', err);},
+        complete: () => {
+          console.log('Completed fetching daily time series');
          }
         })
   }

@@ -11,97 +11,103 @@ export class StockChartComponent implements OnInit , OnChanges {
   mothlyData: any;
 
   @Input() mothlyTimeSeries:any;
+  @Input() canvasId!: string;
+  @Input() metaData!: any;
+
+
  public chart!: Chart;
   ngOnInit() {
-     this.chart = new Chart("canvas", {
-      type: "bar",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [8, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
-            ],
-            borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)"
-            ],
-            borderWidth: 1
-          },
-           {
-            label: "# of Votes",
-            data: [8, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
-            ],
-            borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)"
-            ],
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        scales: {
-          // yAxes: [
-          //   {
-          //     ticks: {
-          //       beginAtZero: true
-          //     }
-          //   }
-          // ]
-        }
-      }
-    });
+    //  this.chart = new Chart("canvas", {
+    //   type: "bar",
+    //   data: {
+    //     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    //     datasets: [
+    //       {
+    //         label: "# of Votes",
+    //         data: [8, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
+    //         backgroundColor: [
+    //           "rgba(255, 99, 132, 0.2)",
+    //           "rgba(54, 162, 235, 0.2)",
+    //           "rgba(255, 206, 86, 0.2)",
+    //           "rgba(75, 192, 192, 0.2)",
+    //           "rgba(153, 102, 255, 0.2)",
+    //           "rgba(255, 159, 64, 0.2)",
+    //           "rgba(255, 99, 132, 0.2)",
+    //           "rgba(54, 162, 235, 0.2)",
+    //           "rgba(255, 206, 86, 0.2)",
+    //           "rgba(75, 192, 192, 0.2)",
+    //           "rgba(153, 102, 255, 0.2)",
+    //           "rgba(255, 159, 64, 0.2)"
+    //         ],
+    //         borderColor: [
+    //           "rgba(255, 99, 132, 1)",
+    //           "rgba(54, 162, 235, 1)",
+    //           "rgba(255, 206, 86, 1)",
+    //           "rgba(75, 192, 192, 1)",
+    //           "rgba(153, 102, 255, 1)",
+    //           "rgba(255, 159, 64, 1)",
+    //           "rgba(255, 99, 132, 1)",
+    //           "rgba(54, 162, 235, 1)",
+    //           "rgba(255, 206, 86, 1)",
+    //           "rgba(75, 192, 192, 1)",
+    //           "rgba(153, 102, 255, 1)",
+    //           "rgba(255, 159, 64, 1)"
+    //         ],
+    //         borderWidth: 1
+    //       },
+    //        {
+    //         label: "# of Votes",
+    //         data: [8, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
+    //         backgroundColor: [
+    //           "rgba(255, 99, 132, 0.2)",
+    //           "rgba(54, 162, 235, 0.2)",
+    //           "rgba(255, 206, 86, 0.2)",
+    //           "rgba(75, 192, 192, 0.2)",
+    //           "rgba(153, 102, 255, 0.2)",
+    //           "rgba(255, 159, 64, 0.2)",
+    //           "rgba(255, 99, 132, 0.2)",
+    //           "rgba(54, 162, 235, 0.2)",
+    //           "rgba(255, 206, 86, 0.2)",
+    //           "rgba(75, 192, 192, 0.2)",
+    //           "rgba(153, 102, 255, 0.2)",
+    //           "rgba(255, 159, 64, 0.2)"
+    //         ],
+    //         borderColor: [
+    //           "rgba(255, 99, 132, 1)",
+    //           "rgba(54, 162, 235, 1)",
+    //           "rgba(255, 206, 86, 1)",
+    //           "rgba(75, 192, 192, 1)",
+    //           "rgba(153, 102, 255, 1)",
+    //           "rgba(255, 159, 64, 1)",
+    //           "rgba(255, 99, 132, 1)",
+    //           "rgba(54, 162, 235, 1)",
+    //           "rgba(255, 206, 86, 1)",
+    //           "rgba(75, 192, 192, 1)",
+    //           "rgba(153, 102, 255, 1)",
+    //           "rgba(255, 159, 64, 1)"
+    //         ],
+    //         borderWidth: 1
+    //       }
+    //     ]
+    //   },
+    //   options: {
+    //     scales: {
+    //       // yAxes: [
+    //       //   {
+    //       //     ticks: {
+    //       //       beginAtZero: true
+    //       //     }
+    //       //   }
+    //       // ]
+    //     }
+    //   }
+    // });
   }
 
    ngOnChanges(changes: SimpleChanges): void {
-    this.mothlyData = changes['mothlyTimeSeries'].currentValue?.['Monthly Time Series'];
+    // this.mothlyData = changes['mothlyTimeSeries'].currentValue?.['Monthly Time Series'];
+        this.mothlyData = changes['mothlyTimeSeries'].currentValue;
+
     const lastTenEntries = Object.entries(this.mothlyData)
   .sort((a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime()) // Sort by date descending
   .slice(0, 10) // Get last 10
@@ -165,8 +171,11 @@ console.log(highArray);
 console.log(lowArray);
 console.log(closeArray);
 console.log(volumeArray);
-this.chart.destroy();
-this.chart = new Chart("canvas", {
+// this.chart.destroy();
+ if (this.chart) {
+    this.chart.destroy();
+  }
+this.chart = new Chart(this.canvasId, {
   type: "bar",
       data: {
         labels: labels,

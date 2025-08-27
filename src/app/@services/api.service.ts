@@ -23,17 +23,21 @@ export class ApiService {
         return this.http.get<any>(`${this.apiUrl}query?datatype=json&keywords=${queryString}&function=SYMBOL_SEARCH`, { headers: this.headers });
       }
 
-      getStockDetails(symbol:string): Observable<any> {
-        console.log(symbol);
-        
+      getStockDetails(symbol:string): Observable<any> {        
         return this.http.get<any>(`${this.apiUrl}query?function=GLOBAL_QUOTE&symbol=${symbol}&datatype=json`, { headers: this.headers });
+
       }
 
-      getMonthlyTimeSeries(symbol:string): Observable<any> {
-        console.log(symbol);
-        
-        return this.http.get<any>(`${this.apiUrl}query?function=TIME_SERIES_MONTHLY&symbol=${symbol}`, { headers: this.headers });
+
+      getMonthlyTimeSeries(symbol:string): Observable<any> {        
+        return this.http.get<any>(`${this.apiUrl}query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&datatype=json`, { headers: this.headers });
+
       }
-      // https://alpha-vantage.p.rapidapi.com/query?function=TIME_SERIES_MONTHLY&symbol=AMZN&datatype=json
     
+      getWeeklyTimeSeries(symbol:string): Observable<any> {        
+return this.http.get<any>(`${this.apiUrl}query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&datatype=json`, { headers: this.headers });
+      }
+
+      getDailyTimeSeries(symbol:string): Observable<any> {        
+return this.http.get<any>(`${this.apiUrl}query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=compact&datatype=json`, { headers: this.headers });      }
 }
