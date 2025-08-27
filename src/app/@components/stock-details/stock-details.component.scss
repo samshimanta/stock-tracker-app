@@ -1,0 +1,118 @@
+// .stock-card {
+//   background: #fff;
+//   border-radius: 8px;
+//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+//   padding: 16px 20px;
+//   width: 280px;
+//   font-family: 'Segoe UI', sans-serif;
+//   margin: 316px auto;
+//   transition: transform 0.2s ease;
+// }
+
+// .stock-card:hover {
+//   transform: scale(1.02);
+// }
+
+// .stock-header {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: baseline;
+//   margin-bottom: 12px;
+// }
+
+// .company-name {
+//   font-size: 18px;
+//   font-weight: 600;
+//   margin: 0;
+// }
+
+// .ticker {
+//   font-size: 14px;
+//   color: #777;
+// }
+
+// .stock-body {
+//   display: flex;
+//   justify-content: space-between;
+//   font-size: 14px;
+// }
+
+// .price strong,
+// .change strong {
+//   margin-left: 4px;
+// }
+
+// .change.positive {
+//   color: green;
+// }
+
+// .change.negative {
+//   color: red;
+// }
+
+
+.stock-card {
+  width: 480px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 420px auto;
+  transition: box-shadow 0.3s ease;
+}
+
+.stock-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.symbol {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.latest-day {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.stock-price {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #2a9d8f; /* teal */
+  margin-bottom: 15px;
+}
+
+.stock-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 8px;
+  column-gap: 15px;
+  font-size: 0.9rem;
+}
+
+.stock-details div strong {
+  color: #555;
+}
+
+.change {
+  grid-column: span 2;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.change.positive {
+  color: green;
+}
+
+.change.negative {
+  color: red;
+}

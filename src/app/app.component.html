@@ -4,7 +4,7 @@
   type="text"
   
   (keyup)="search($event)"
-  placeholder="Search by area..."
+  placeholder="Search your Stocks here(ex:ABCD)..."
   autocomplete="off"
 />
 <ul *ngIf="suggestions?.length" class="autocomplete-list">
@@ -12,4 +12,5 @@
     {{ suggestion['2. name'] }}
   </li>
 </ul>
+<app-stock-details [stockDetails]="stockDetails" [stockName]="stockName" ></app-stock-details>
 <router-outlet></router-outlet>

@@ -1,0 +1,49 @@
+<!-- <div class="stock-card">
+  <div class="stock-header">
+    <h2 class="company-name">{{stockName}}</h2>
+    <span class="ticker">({{stockDetails['Global Quote']['01. symbol']}})</span>
+  </div>
+  <div class="stock-body">
+    <div class="stockDetails['Global Quote']['01. symbol']">
+      <span>Price:</span>
+      <strong></strong>
+    </div>
+    <div class="change positive">
+      <span>Change:</span>
+      <strong>+1.34%</strong>
+    </div>
+  </div>
+</div> -->
+
+<div class="stock-card">
+    <div class="stock-header">
+        <h2 class="symbol">{{stockName}}</h2>
+        <span class="latest-day">{{stockDetails['Global Quote']['07. latest trading day']}}</span>
+    </div>
+
+    <div class="stock-price">
+        {{stockDetails['Global Quote']['01. symbol']}}
+    </div>
+
+    <div class="stock-details">
+        <div>
+            <strong>Open:</strong> {{stockDetails['Global Quote']['02. open']}}
+        </div>
+        <div>
+            <strong>High:</strong> {{stockDetails['Global Quote']['03. high']}}
+        </div>
+        <div>
+            <strong>Low:</strong> {{stockDetails['Global Quote']['04. low']}}
+        </div>
+        <div>
+            <strong>Volume:</strong> {{stockDetails['Global Quote']['06. volume']}}
+        </div>
+        <div>
+            <strong>Prev Close:</strong> {{stockDetails['Global Quote']['08. previous close']}}
+        </div>
+        <div class="change positive">
+            <strong>Change:</strong> {{stockDetails['Global Quote']['09. change']}} 
+            ({{stockDetails['Global Quote']['10. change percent']}})
+        </div>
+    </div>
+</div>

@@ -11,11 +11,15 @@ export class AppComponent implements OnInit {
   title = 'stock-tracker-app';
   searchSubject = new Subject<string>();
 
+  stockDetails: any;
+  stockName: string = '';
+
   suggestions!: any[];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+
   this.searchSubject.pipe(
     debounceTime(300),
     distinctUntilChanged(),
@@ -57,5 +61,12 @@ export class AppComponent implements OnInit {
 }
   selectSuggestion(suggestion:any){
     console.log('Selected suggestion:', suggestion);
+    console.log(suggestion['1. symbol']);
+    this.stockName = suggestion['2. name'];
+    this.suggestions.length = 0; // Clear suggestions after selection
+    
+    this.apiService.getStockDetails(suggestion['1. symbol']).subscribe(res => {
+      console.log('Stock details:', this.stockDetails =res);
+    });
   }
 }
