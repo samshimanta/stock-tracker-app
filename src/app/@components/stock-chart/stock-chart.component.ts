@@ -189,23 +189,18 @@ this.chart = new Chart("canvas", {
             borderWidth: 1,
             backgroundColor: "#e2a03f"
           },
-          // {
-          //   label: "Close",
-          //   data: closeArray,
-          //   borderWidth: 1,
-          //   backgroundColor: "#e24f3f"
-          // },
           {
-            label: "Volume",
-            data: volumeArray,
+            label: "Close",
+            data: closeArray,
             borderWidth: 1,
-            backgroundColor: "#6f42c1"
+            backgroundColor: "#e24f3f"
           }
+          
+        
+          
          
         ],
       }
-
-      
 });
 
   }
