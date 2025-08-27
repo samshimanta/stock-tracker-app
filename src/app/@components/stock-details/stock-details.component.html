@@ -15,7 +15,7 @@
   </div>
 </div> -->
 
-<div class="stock-card">
+<div class="stock-card" *ngIf="stockDetails">
     <div class="stock-header">
         <h2 class="symbol">{{stockName}}</h2>
         <span class="latest-day">{{stockDetails['Global Quote']['07. latest trading day']}}</span>

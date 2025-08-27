@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   stockDetails: any;
   stockName: string = '';
 
+  mothlyTimeSeries: any;
+
   suggestions!: any[];
 
   constructor(private apiService: ApiService) {}
@@ -65,8 +67,31 @@ export class AppComponent implements OnInit {
     this.stockName = suggestion['2. name'];
     this.suggestions.length = 0; // Clear suggestions after selection
     
-    this.apiService.getStockDetails(suggestion['1. symbol']).subscribe(res => {
-      console.log('Stock details:', this.stockDetails =res);
-    });
+    this.apiService.getStockDetails(suggestion['1. symbol']).subscribe(
+    { next: (res) => {
+        console.log('Stock details:', this.stockDetails = res);
+      },
+      error: (err) => {
+        console.error('Error fetching stock details:', err);},
+      complete: () => {
+        console.log('Completed fetching stock details');
+        this.getMonthlyTimeSeries(suggestion['1. symbol']);
+       }
+      })
+    
+  }
+
+  getMonthlyTimeSeries(symbol:string){
+    this.apiService.getMonthlyTimeSeries(symbol).subscribe(
+      { next: (res) => {
+          console.log('Monthly Time Series:', res);
+          this.mothlyTimeSeries = res;
+        },
+        error: (err) => {
+          console.error('Error fetching monthly time series:', err);},
+        complete: () => {
+          console.log('Completed fetching monthly time series');
+         }
+        })
   }
 }

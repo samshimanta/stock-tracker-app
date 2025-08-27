@@ -29,6 +29,11 @@ export class ApiService {
         return this.http.get<any>(`${this.apiUrl}query?function=GLOBAL_QUOTE&symbol=${symbol}&datatype=json`, { headers: this.headers });
       }
 
-      
+      getMonthlyTimeSeries(symbol:string): Observable<any> {
+        console.log(symbol);
+        
+        return this.http.get<any>(`${this.apiUrl}query?function=TIME_SERIES_MONTHLY&symbol=${symbol}`, { headers: this.headers });
+      }
+      // https://alpha-vantage.p.rapidapi.com/query?function=TIME_SERIES_MONTHLY&symbol=AMZN&datatype=json
     
 }
