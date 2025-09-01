@@ -31,6 +31,8 @@ export class StockChartComponent implements OnInit, OnChanges {
           acc[date] = value;
           return acc;
         }, {});
+        console.log(lastTenEntries);
+        
       this.makeChart(lastTenEntries);
     }
 
@@ -39,6 +41,7 @@ export class StockChartComponent implements OnInit, OnChanges {
   }
 
   makeChart(apiData: any) {
+
     const labels = Object.keys(apiData);
     const dataset = Object.values(apiData);
     const openArray: any[] = [];
@@ -46,6 +49,9 @@ export class StockChartComponent implements OnInit, OnChanges {
     const lowArray: any[] = [];
     const closeArray: any[] = [];
     const volumeArray: any[] = [];
+console.log(dataset);
+console.log(labels);
+
 
     dataset.map((data: any) => {
       openArray.push(data['1. open'])
@@ -55,45 +61,77 @@ export class StockChartComponent implements OnInit, OnChanges {
       volumeArray.push(data['5. volume'])
     });
 
+//     const canvas = document.getElementById(this.canvasId) as HTMLCanvasElement;
+// if (!canvas) {
+//   console.error('Canvas element not found:', this.canvasId);
+//   return;
+// }
+
     if (this.chart) {
       this.chart.destroy();
     }
-    this.chart = new Chart(this.canvasId, {
+    this.chart = new Chart("canvas", {
       type: "bar",
-      data: {
-        labels: labels,
+      // data: {
+      //   labels: labels,
+      //   datasets: [
+      //     {
+      //       label: "Open",
+      //       data: openArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#407ab3"
+      //     },
+      //     {
+      //       label: "High",
+      //       data: highArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#42b3a6"
+      //     },
+      //     {
+      //       label: "Low",
+      //       data: lowArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#e2a03f"
+      //     },
+      //     {
+      //       label: "Close",
+      //       data: closeArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#e24f3f"
+      //     }
+
+
+
+
+      //   ],
+      // }
+       data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [
           {
-            label: "Open",
-            data: openArray,
-            borderWidth: 1,
-            backgroundColor: "#407ab3"
-          },
-          {
-            label: "High",
-            data: highArray,
-            borderWidth: 1,
-            backgroundColor: "#42b3a6"
-          },
-          {
-            label: "Low",
-            data: lowArray,
-            borderWidth: 1,
-            backgroundColor: "#e2a03f"
-          },
-          {
-            label: "Close",
-            data: closeArray,
-            borderWidth: 1,
-            backgroundColor: "#e24f3f"
+            label: "# of Votes",
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 1
           }
-
-
-
-
-        ],
+        ]
       }
-    });
+      });
 
   }
 }

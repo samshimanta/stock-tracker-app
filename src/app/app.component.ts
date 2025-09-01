@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './@services/api.service';
 import { debounceTime, distinctUntilChanged, of, Subject, switchMap } from 'rxjs';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { debounceTime, distinctUntilChanged, of, Subject, switchMap } from 'rxjs
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    public chart!: Chart;
+  
   title = 'stock-tracker-app';
   searchSubject = new Subject<string>();
 
@@ -27,17 +30,80 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-  this.searchSubject.pipe(
-    debounceTime(300),
-    distinctUntilChanged(),
-    switchMap(query => {
-      if (!query) return of({ bestMatches: [] });
-      return this.apiService.searchStock(query);
-    })
-  ).subscribe(res => {
-    console.log(res);
-    this.suggestions = res.bestMatches;
-  });
+  this.chart = new Chart("canvas", {
+      type: "bar",
+      // data: {
+      //   labels: labels,
+      //   datasets: [
+      //     {
+      //       label: "Open",
+      //       data: openArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#407ab3"
+      //     },
+      //     {
+      //       label: "High",
+      //       data: highArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#42b3a6"
+      //     },
+      //     {
+      //       label: "Low",
+      //       data: lowArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#e2a03f"
+      //     },
+      //     {
+      //       label: "Close",
+      //       data: closeArray,
+      //       borderWidth: 1,
+      //       backgroundColor: "#e24f3f"
+      //     }
+
+
+
+
+      //   ],
+      // }
+       data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [
+          {
+            label: "# of Votes",
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      }
+      });
+
+  // this.searchSubject.pipe(
+  //   debounceTime(300),
+  //   distinctUntilChanged(),
+  //   switchMap(query => {
+  //     if (!query) return of({ bestMatches: [] });
+  //     return this.apiService.searchStock(query);
+  //   })
+  // ).subscribe(res => {
+  //   console.log(res);
+  //   this.suggestions = res.bestMatches;
+  // });
   }
 
 
