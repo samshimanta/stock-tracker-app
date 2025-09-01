@@ -31,17 +31,17 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
   
-  // this.searchSubject.pipe(
-  //   debounceTime(300),
-  //   distinctUntilChanged(),
-  //   switchMap(query => {
-  //     if (!query) return of({ bestMatches: [] });
-  //     return this.apiService.searchStock(query);
-  //   })
-  // ).subscribe(res => {
-  //   console.log(res);
-  //   this.suggestions = res.bestMatches;
-  // });
+  this.searchSubject.pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    switchMap(query => {
+      if (!query) return of({ bestMatches: [] });
+      return this.apiService.searchStock(query);
+    })
+  ).subscribe(res => {
+    console.log(res);
+    this.suggestions = res.bestMatches;
+  });
   }
 
 
@@ -85,8 +85,8 @@ export class AppComponent implements OnInit {
       complete: () => {
         console.log('Completed fetching stock details');
         this.getMonthlyTimeSeries(suggestion['1. symbol']);
-        this.getWeeklyTimeSeries(suggestion['1. symbol']);
-        this.getDailyTimeSeries(suggestion['1. symbol']);
+        // this.getWeeklyTimeSeries(suggestion['1. symbol']);
+        // this.getDailyTimeSeries(suggestion['1. symbol']);
        }
       })
     
