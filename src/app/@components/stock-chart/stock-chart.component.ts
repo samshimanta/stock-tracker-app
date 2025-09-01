@@ -1,11 +1,47 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from "chart.js/auto";
 @Component({
   selector: 'app-stock-chart',
   templateUrl: './stock-chart.component.html',
   styleUrls: ['./stock-chart.component.scss']
 })
-export class StockChartComponent implements OnInit, OnChanges {
+export class StockChartComponent implements OnInit, OnChanges, AfterViewInit {
+  ngAfterViewInit(): void {
+//             const canvas = document.getElementById(this.canvasId) as HTMLCanvasElement;
+// if (!canvas) {
+//   console.error('Canvas element not found:', this.canvasId);
+//   return;
+// }
+      // this.chart = new Chart("canvasId", {
+      // type: "bar",
+      //  data: {
+      //   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      //   datasets: [
+      //     {
+      //       label: "# of Votes",
+      //       data: [12, 19, 3, 5, 2, 3],
+      //       backgroundColor: [
+      //         "rgba(255, 99, 132, 0.2)",
+      //         "rgba(54, 162, 235, 0.2)",
+      //         "rgba(255, 206, 86, 0.2)",
+      //         "rgba(75, 192, 192, 0.2)",
+      //         "rgba(153, 102, 255, 0.2)",
+      //         "rgba(255, 159, 64, 0.2)"
+      //       ],
+      //       borderColor: [
+      //         "rgba(255, 99, 132, 1)",
+      //         "rgba(54, 162, 235, 1)",
+      //         "rgba(255, 206, 86, 1)",
+      //         "rgba(75, 192, 192, 1)",
+      //         "rgba(153, 102, 255, 1)",
+      //         "rgba(255, 159, 64, 1)"
+      //       ],
+      //       borderWidth: 1
+      //     }
+      //   ]
+      // }
+      // });
+  }
 
 
   mothlyData: any;
@@ -16,11 +52,49 @@ export class StockChartComponent implements OnInit, OnChanges {
 
 
   public chart!: Chart;
+  constructor(private elementRef: ElementRef) { }
   ngOnInit() {
+
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+//             const canvas = document.getElementById(this.canvasId) as HTMLCanvasElement;
+// if (!canvas) {
+//   console.error('Canvas element not found:', this.canvasId);
+//   return;
+// }
+let htmlRef = this.elementRef.nativeElement.querySelector(`#canvasId`);
+    this.chart = new Chart(htmlRef, {
+      type: "bar",
+       data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [
+          {
+            label: "# of Votes",
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      }
+      });
+
     this.mothlyData = changes['mothlyTimeSeries'].currentValue;
 
     if (this.mothlyData) {
@@ -32,6 +106,7 @@ export class StockChartComponent implements OnInit, OnChanges {
           return acc;
         }, {});
         console.log(lastTenEntries);
+        
         
       this.makeChart(lastTenEntries);
     }
