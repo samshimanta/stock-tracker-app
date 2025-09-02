@@ -5,47 +5,8 @@ import { Chart } from "chart.js/auto";
   templateUrl: './stock-chart.component.html',
   styleUrls: ['./stock-chart.component.scss']
 })
-export class StockChartComponent implements OnInit, OnChanges, AfterViewInit {
-  ngAfterViewInit(): void {
-//             const canvas = document.getElementById(this.canvasId) as HTMLCanvasElement;
-// if (!canvas) {
-//   console.error('Canvas element not found:', this.canvasId);
-//   return;
-// }
-      // this.chart = new Chart("canvasId", {
-      // type: "bar",
-      //  data: {
-      //   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      //   datasets: [
-      //     {
-      //       label: "# of Votes",
-      //       data: [12, 19, 3, 5, 2, 3],
-      //       backgroundColor: [
-      //         "rgba(255, 99, 132, 0.2)",
-      //         "rgba(54, 162, 235, 0.2)",
-      //         "rgba(255, 206, 86, 0.2)",
-      //         "rgba(75, 192, 192, 0.2)",
-      //         "rgba(153, 102, 255, 0.2)",
-      //         "rgba(255, 159, 64, 0.2)"
-      //       ],
-      //       borderColor: [
-      //         "rgba(255, 99, 132, 1)",
-      //         "rgba(54, 162, 235, 1)",
-      //         "rgba(255, 206, 86, 1)",
-      //         "rgba(75, 192, 192, 1)",
-      //         "rgba(153, 102, 255, 1)",
-      //         "rgba(255, 159, 64, 1)"
-      //       ],
-      //       borderWidth: 1
-      //     }
-      //   ]
-      // }
-      // });
-  }
-
-
+export class StockChartComponent implements OnInit, OnChanges {
   mothlyData: any;
-
   @Input() mothlyTimeSeries: any;
   @Input() canvasId!: string;
   @Input() metaData!: any;
@@ -54,47 +15,9 @@ export class StockChartComponent implements OnInit, OnChanges, AfterViewInit {
   public chart!: Chart;
   constructor(private elementRef: ElementRef) { }
   ngOnInit() {
-
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-//             const canvas = document.getElementById(this.canvasId) as HTMLCanvasElement;
-// if (!canvas) {
-//   console.error('Canvas element not found:', this.canvasId);
-//   return;
-// }
-let htmlRef = this.elementRef.nativeElement.querySelector(`#canvasId`);
-    // this.chart = new Chart(htmlRef, {
-    //   type: "bar",
-    //    data: {
-    //     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    //     datasets: [
-    //       {
-    //         label: "# of Votes",
-    //         data: [12, 19, 3, 5, 2, 3],
-    //         backgroundColor: [
-    //           "rgba(255, 99, 132, 0.2)",
-    //           "rgba(54, 162, 235, 0.2)",
-    //           "rgba(255, 206, 86, 0.2)",
-    //           "rgba(75, 192, 192, 0.2)",
-    //           "rgba(153, 102, 255, 0.2)",
-    //           "rgba(255, 159, 64, 0.2)"
-    //         ],
-    //         borderColor: [
-    //           "rgba(255, 99, 132, 1)",
-    //           "rgba(54, 162, 235, 1)",
-    //           "rgba(255, 206, 86, 1)",
-    //           "rgba(75, 192, 192, 1)",
-    //           "rgba(153, 102, 255, 1)",
-    //           "rgba(255, 159, 64, 1)"
-    //         ],
-    //         borderWidth: 1
-    //       }
-    //     ]
-    //   }
-    //   });
-
     this.mothlyData = changes['mothlyTimeSeries'].currentValue;
 
     if (this.mothlyData) {
@@ -124,9 +47,6 @@ let htmlRef = this.elementRef.nativeElement.querySelector(`#canvasId`);
     const lowArray: any[] = [];
     const closeArray: any[] = [];
     const volumeArray: any[] = [];
-console.log(dataset);
-console.log(labels);
-
 
     dataset.map((data: any) => {
       openArray.push(data['1. open'])
@@ -136,11 +56,7 @@ console.log(labels);
       volumeArray.push(data['5. volume'])
     });
 
-//     const canvas = document.getElementById(this.canvasId) as HTMLCanvasElement;
-// if (!canvas) {
-//   console.error('Canvas element not found:', this.canvasId);
-//   return;
-// }
+
 
     if (this.chart) {
       this.chart.destroy();
@@ -181,32 +97,7 @@ console.log(labels);
 
         ],
       }
-      //  data: {
-      //   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      //   datasets: [
-      //     {
-      //       label: "# of Votes",
-      //       data: [12, 19, 3, 5, 2, 3],
-      //       backgroundColor: [
-      //         "rgba(255, 99, 132, 0.2)",
-      //         "rgba(54, 162, 235, 0.2)",
-      //         "rgba(255, 206, 86, 0.2)",
-      //         "rgba(75, 192, 192, 0.2)",
-      //         "rgba(153, 102, 255, 0.2)",
-      //         "rgba(255, 159, 64, 0.2)"
-      //       ],
-      //       borderColor: [
-      //         "rgba(255, 99, 132, 1)",
-      //         "rgba(54, 162, 235, 1)",
-      //         "rgba(255, 206, 86, 1)",
-      //         "rgba(75, 192, 192, 1)",
-      //         "rgba(153, 102, 255, 1)",
-      //         "rgba(255, 159, 64, 1)"
-      //       ],
-      //       borderWidth: 1
-      //     }
-      //   ]
-      // }
+
       });
 
   }

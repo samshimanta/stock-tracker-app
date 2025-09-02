@@ -14,11 +14,7 @@ data: any;
 
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['stockDetails'].currentValue);
-    console.log(changes['stockName'].currentValue);
-    
-    
+    console.log(changes['stockDetails']?.currentValue);
+    console.log(changes['stockName']?.currentValue);  
   }
-
-
 }

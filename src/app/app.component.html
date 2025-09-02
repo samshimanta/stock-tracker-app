@@ -1,5 +1,5 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<h1>Hi there from angular v15</h1>
+<h1>Stock Dashboard</h1>
 
 <input
   type="text"
@@ -16,9 +16,9 @@
 <app-stock-details [stockDetails]="stockDetails" [stockName]="stockName" ></app-stock-details>
 
 <div class="charts-container">
-<app-stock-chart [mothlyTimeSeries]="mothlyTimeSeries" [metaData]="mothlyMetaData" canvasId="canvas1"></app-stock-chart>
-<!-- <app-stock-chart [mothlyTimeSeries]="weeklyTimeSeries" [metaData]="weeklyMetaData" canvasId="canvas2"></app-stock-chart>
-<app-stock-chart [mothlyTimeSeries]="dailyTimeSeries" [metaData]="dailyMetaData" canvasId="canvas3"></app-stock-chart> -->
+<app-stock-chart [mothlyTimeSeries]="mothlyTimeSeries" [metaData]="mothlyMetaData" canvasId="Monthly"></app-stock-chart>
+<app-stock-chart [mothlyTimeSeries]="weeklyTimeSeries" [metaData]="weeklyMetaData" canvasId="Weekly"></app-stock-chart>
+<app-stock-chart [mothlyTimeSeries]="dailyTimeSeries" [metaData]="dailyMetaData" canvasId="Daily"></app-stock-chart>
 
 </div>
 <router-outlet></router-outlet>

@@ -35,7 +35,7 @@ export class ApiService {
       }
     
       getWeeklyTimeSeries(symbol:string): Observable<any> {        
-return this.http.get<any>(`${this.apiUrl}query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&datatype=json`, { headers: this.headers });
+return this.http.get<any>(`${this.apiUrl}query?function=TIME_SERIES_WEEKLY&symbol=${symbol}&datatype=json`, { headers: this.headers });
       }
 
       getDailyTimeSeries(symbol:string): Observable<any> {        

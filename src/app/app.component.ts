@@ -85,8 +85,8 @@ export class AppComponent implements OnInit {
       complete: () => {
         console.log('Completed fetching stock details');
         this.getMonthlyTimeSeries(suggestion['1. symbol']);
-        // this.getWeeklyTimeSeries(suggestion['1. symbol']);
-        // this.getDailyTimeSeries(suggestion['1. symbol']);
+        this.getWeeklyTimeSeries(suggestion['1. symbol']);
+        this.getDailyTimeSeries(suggestion['1. symbol']);
        }
       })
     
