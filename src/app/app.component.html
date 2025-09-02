@@ -15,7 +15,7 @@
 </ul>
 <app-stock-details [stockDetails]="stockDetails" [stockName]="stockName" ></app-stock-details>
 
-<div class="charts-container">
+<div class="charts-container" *ngIf="stockDetails">
 <app-stock-chart [mothlyTimeSeries]="mothlyTimeSeries" [metaData]="mothlyMetaData" canvasId="Monthly"></app-stock-chart>
 <app-stock-chart [mothlyTimeSeries]="weeklyTimeSeries" [metaData]="weeklyMetaData" canvasId="Weekly"></app-stock-chart>
 <app-stock-chart [mothlyTimeSeries]="dailyTimeSeries" [metaData]="dailyMetaData" canvasId="Daily"></app-stock-chart>
